@@ -1,17 +1,6 @@
-FROM debian:buster AS compiler
+FROM alpine AS compiler
 
-EXPOSE 179
-
-RUN apt-get update && apt-get install -y \
-    autoconf \
-    bison \
-    build-essential \
-    curl \
-    flex \
-    libreadline-dev \
-    libncurses5-dev \
-    m4 \
-    unzip
+RUN apk --update add autoconf bison curl flex gcc g++ linux-headers m4 make ncurses-dev readline-dev unzip zlib-dev
 
 ARG BIRD_VERSION=2.0.8
 
@@ -26,16 +15,14 @@ RUN cd bird-${BIRD_VERSION} && \
     make && \
     make install
 
-FROM debian:buster-slim
-
-RUN apt-get update && \
-    apt-get install -y libreadline7 libncurses5 libc6 && \
-    rm -rf /var/lib/apt/lists/*
+FROM alpine
 
 ARG BIRD_VERSION=2.0.8
 
 COPY --from=compiler /bird-${BIRD_VERSION}/bird /bird-${BIRD_VERSION}/birdc /bird-${BIRD_VERSION}/birdcl /usr/local/sbin/
 
 RUN mkdir /etc/bird /run/bird
+
+EXPOSE 179
 
 CMD bird -c /etc/bird/bird.conf -d

@@ -2,9 +2,8 @@
 
 Yet another [BIRD](https://bird.network.cz/) Docker image.
 
-This image is built on the latest Debian stable (slim version). It is built in
-two stages. The first stage runs a classic Debian stable image to compile BIRD
-while the second stage will copy only the relevant files.
+This image is built on Alpine. It is built in two stages. The first stage will
+compile BIRD while the second stage will copy only the relevant files.
 
 It can be run quite simply with:
 
