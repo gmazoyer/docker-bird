@@ -4,14 +4,14 @@ EXPOSE 179
 
 RUN apt-get update && apt-get install -y \
     autoconf \
-	  bison \
-	  build-essential \
-	  curl \
-	  flex \
-	  libreadline-dev \
-	  libncurses5-dev \
-	  m4 \
-	  unzip
+    bison \
+    build-essential \
+    curl \
+    flex \
+    libreadline-dev \
+    libncurses5-dev \
+    m4 \
+    unzip
 
 ARG BIRD_VERSION=2.0.8
 
@@ -20,7 +20,7 @@ RUN tar -zxvf bird-${BIRD_VERSION}.tar.gz
 
 RUN cd bird-${BIRD_VERSION} && \
     autoconf && \
-	  autoheader && \
+    autoheader && \
     ./configure --prefix=/usr --sysconfdir=/etc/bird --localstatedir=/var \
     --with-runtimedir=/run/bird && \
     make && \
