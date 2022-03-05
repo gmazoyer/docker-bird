@@ -2,7 +2,7 @@ FROM alpine AS compiler
 
 RUN apk --update add autoconf bison curl flex gcc g++ linux-headers m4 make ncurses-dev readline-dev unzip zlib-dev
 
-ARG BIRD_VERSION=2.0.8
+ARG BIRD_VERSION=2.0.9
 
 RUN curl -O -L https://bird.network.cz/download/bird-${BIRD_VERSION}.tar.gz
 RUN tar -zxvf bird-${BIRD_VERSION}.tar.gz
@@ -17,7 +17,7 @@ RUN cd bird-${BIRD_VERSION} && \
 
 FROM alpine
 
-ARG BIRD_VERSION=2.0.8
+ARG BIRD_VERSION=2.0.9
 
 COPY --from=compiler /bird-${BIRD_VERSION}/bird /bird-${BIRD_VERSION}/birdc /bird-${BIRD_VERSION}/birdcl /usr/local/sbin/
 

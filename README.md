@@ -8,7 +8,7 @@ compile BIRD while the second stage will copy only the relevant files.
 It can be run quite simply with:
 
 ```
-docker run -it --rm -v $(pwd)/bird.conf:/etc/bird/bird.conf bird:2.0.8
+docker run -it --rm -v $(pwd)/bird.conf:/etc/bird/bird.conf bird:2.0.9
 ```
 
 This command will use a `bird.conf` file located in the current directory as
